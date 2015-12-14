@@ -1,0 +1,158 @@
+
+
+Cryptographic Key Management System  (CKMS)
+
+Key Metadata
+
+---------------------------------------------------------------------------------
+Key management is the management of cryptographic keys in a cryptosystem. 
+This includes dealing with 
+
+generation
+exchange
+storage
+use
+replacement of keys
+
+-----------------------------------------------------------------------------------
+
+
+
+
+------------------------------------------------------
+
+
+
+
+Protecting the key is generally referred to as key management. (Greene, 2014, p. 311)
+
+
+
+
+(Greene, 2014, p. xx)
+
+Greene, S. S. (2014). Security program and policies: Principles and practices. 
+Indianapolis, IN: Pearson.
+Retrieved from
+http://goo.gl/TcK5XB
+
+
+
+--------------------------------------------------------
+
+
+
+SP 800-67: Recommendations for Key Management
+
+The proper management of cryptographic keys
+
+The proper management of cryptographic keys is essential to the effective use of cryptography for security.  Keys are analogous to the combination of a safe.  If a safe combination is known to an adversary, the strongest safe provides no security against penetration.
+(Barker, Elaine B, 2012, p. 5)
+
+
+Similarly, poor key management may easily compromise strong algorithms.  Ultimately, the security of information protected by cryptography directly depends on the strength of the keys, the effectiveness of mechanisms and protocols associated with keys, and the protection afforded to the keys. (Barker, Elaine B, 2012, p. 5)
+
+
+All keys need to be protected against modification, and secret and private keys need to be protected against unauthorized disclosure.  Key management provides the foundation for the secure generation, storage, distribution, use and destruction of keys. (Barker, Elaine B, 2012, p. 5)
+
+Users and developers are presented with many choices in their use of cryptographic mechanisms.  Inappropriate choices may result in an illusion of security, but little or no real security for the protocol or application.
+(Barker, Elaine B, 2012, p. 5)
+
+
+
+(Barker, Elaine B, 2012, p. xx)
+
+Barker, Elaine B. (2012). Recommendation for key management: Part 1 (SP-800-57). 
+Retrieved from U.S. Dept. of Commerce, National Institute of Standards and Technology 
+website: http://goo.gl/Q0IapD
+
+
+
+------------------------------------------------------------
+
+
+
+When cryptographic keys are submitted for storage, they are typically submitted with their metadata.  The metadata may include an owner identifier or user access control list.  If any of the metadata is incorrect, then the false information will be perpetuated by the CKMS system.(Barker, Smid, Branstad, & Chokhani, 2013, p. 51)
+
+Therefore, a CKMS storage system should verify the authorization of the submitting entity and the integrity of the submitted data before any data is stored. (Should verify the integrity of keys and metadata immediately upon access and before operational use) (Barker, Smid, Branstad, & Chokhani, 2013, p. 51)
+
+
+When cryptographic keys are stored, they require protection.  Symmetric keys and private keys require confidentiality protection and access control.  All keys require integrity protection.  For confidentiality protection, cryptography, computer security, and/or physical security can be employed.  If symmetric key cryptography is used for key confidentiality, then there often exists a symmetric key wrapping key that is used to encrypt and decrypt the stored keys and confidential metadata.  At the top level in the key encrypting key hierarchy, there typically is a key that must be physiclly protected.
+(Barker, Smid, Branstad, & Chokhani, 2013, p. 51)
+
+
+
+If asymmetric key cryptography is used for key confidentiality, then a public key could be used to encrypt stored keys. The corresponding private key that is used to decrypt the keys must be protected in some manner, e.g., using physical security and key splitting (Section 6.7.5) that usually does not involve encryption.
+(Barker, Smid, Branstad, & Chokhani, 2013, p. 51)
+
+
+All stored keys require integrity protection because a garbled key will not correctly perform its intended function and may compromise another key under some circumstances.  An error detection code can detect an unintentional garble in a key, however, if a key is intentionally garbled, then a cryptographic integrity check like a MAC or digital signature should be implemented for error detection. (Barker, Smid, Branstad, & Chokhani, 2013, p. 51)
+
+When public keys are contained within a certificate, they are provided integrity protection by means of the digital signature on the certificate.  If public keys are stored outside of their certificate, then their integrity needs to be protected by some other means.(Barker, Smid, Branstad, & Chokhani, 2013, p. 51)
+
+
+A CKMS should only allow authorized users to have access to stored keys. Thus, a CKMS should have some type of access control system (ACS).  The ACS may be as simple as requiring a password or cryptographic key from the authorized user of the key, and/or it may make use of biometric authentication techniques.
+(Barker, Smid, Branstad, & Chokhani, 2013, p. 51)
+
+
+A CKMS should employ methods for backing up, archiving, and recovering keys as necessary to provide for the recovery of valuable data. [Appendix B of SP 800-57-part1]
+(Barker, Smid, Branstad, & Chokhani, 2013, p. 52)
+
+
+A garble in key metadata could result in the misuse of the key or the denial of service. Therefore, metadata may also require backup, archiving, and recovery.
+(Barker, Smid, Branstad, & Chokhani, 2013, p. 52)
+
+
+
+Key Transport
+
+When cryptographic keys and metadata are transported (distributed) from one entity (the sender) to another (the intended receiver), they should be protected. 
+(Barker, Smid, Branstad, & Chokhani, 2013, p. 52)
+
+If cryptography is used to protect the confidentiality of symmetric and private keys during transport, then a key establishment technique involving either a symmetric key wrapping key or one or more asymmetric transport key pairs is used.  These wrapping and transport keys also should be protected by the end entities involved in the transport.
+(Barker, Smid, Branstad, & Chokhani, 2013, p. 53)
+
+
+All transported keys require integrity protection and should be checked for errors before each use. Using a digital signature or certificate can provide integrity protection.
+(Barker, Smid, Branstad, & Chokhani, 2013, p. 53)
+
+Receiver of a transported key desires assurance that the key came from the expected authorized key sender.
+(Barker, Smid, Branstad, & Chokhani, 2013, p. 53)
+
+
+
+Key Agreement
+
+Two entities, working together can create and agree on a cryptographic key without the key being transported from one to the other.  Each entity supplies some information that is used to derive a common key.  Cryptographic algorithms employing key agreement keys are used by each entity.
+(Barker, Smid, Branstad, & Chokhani, 2013, p. 53)
+
+
+Some Key Establishment Protocols Internet Key Exchange(IKE), Transport Layer Security(TLS), 
+Secure/Multipart Internet Mail Extensions (S/MIME),Kerberos, Domain Name System Security Extensions (DNSSEC) and Secure Shell (SSH) (Barker, Smid, Branstad, & Chokhani, 2013, p. 54)
+
+
+Additional Security measures
+
+Multiparty Control
+
+Require that more than one person be logged on and authenticated to perform some function. 
+(Barker, Smid, Branstad, & Chokhani, 2013, p. 58,59)
+
+
+Key Splitting
+
+Key splitting is a technique for multiparty control. When a highly sensitive key is required, n key splits are generated so that any k of the key splits can be used to form the key, but any k-1 key splits provide no knowledge of the key.  Each of the n key splits is then assigned to one of n trusted entities so that the key cannot be formed unless k of the entities agree to take part.
+(Barker, Smid, Branstad, & Chokhani, 2013, p.59)
+
+
+Set up a cryptoperiod and periodically generate new keys and then delete the old ones.
+(Barker, Smid, Branstad, & Chokhani, 2013, p.60)
+
+
+Barker, E., Smid, M., Branstad, D., & Chokhani, S. (2013). 
+A Framework for Designing Cryptographic Key Management Systems (800-130). 
+Retrieved from NIST 
+website: http://goo.gl/85csPk
+
+
+------------------------------------------
